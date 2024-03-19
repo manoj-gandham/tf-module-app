@@ -19,8 +19,8 @@ resource "aws_autoscaling_group" "asg" {
 }
 
 resource "aws_security_group" "sg" {
-  name        = "${var.name}-${var.env}"-sg
-  description = "${var.name}-${var.env}"-sg
+  name        = "${var.name}-${var.env}-sg"
+  description = "${var.name}-${var.env}-sg"
   vpc_id      = var.allow_app_cidr
 
   ingress {
@@ -47,6 +47,6 @@ resource "aws_security_group" "sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = "${var.name}-${var.env}"-sg
+  tags = "${var.name}-${var.env}-sg"
 }
 
