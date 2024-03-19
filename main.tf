@@ -4,7 +4,7 @@ resource "aws_security_group" "sg" {
   vpc_id      = var.vpc_id
 
   ingress {
-    description      = "app"
+    description      = "APP"
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
@@ -12,7 +12,7 @@ resource "aws_security_group" "sg" {
   }
 
   ingress {
-    description      = "ssh"
+    description      = "SSH"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
@@ -27,7 +27,7 @@ resource "aws_security_group" "sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
   tags = {
-    name = "${var.name}-${var.env}-sg"
+    Name = "${var.name}-${var.env}-sg"
   }
 }
 
