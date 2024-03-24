@@ -15,7 +15,7 @@ resource "aws_iam_role" "role" {
     ]
   })
 
-  tags = merge(var.tags, { Name = "${var.name}-alb-${var.env}-role" })
+  tags = merge(var.tags, { Name = "${var.name}-${var.env}-role" })
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
@@ -27,26 +27,21 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
   name = "${var.name}-${var.env}-ssm-ps-policy"
   role = aws_iam_role.role.id
 
+
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "VisualEditor0",
-        "Effect": "Allow",
-        "Action": [
+        "Sid" : "VisualEditor0",
+        "Effect" : "Allow",
+        "Action" : [
           "kms:Decrypt",
           "ssm:GetParameterHistory",
           "ssm:GetParametersByPath",
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource": concat([var.kms_arn], local.resources)
-      },
-      {
-        "Sid": "VisualEditor1",
-        "Effect": "Allow",
-        "Action": "ssm:DescribeParameters",
-        "Resource": "*"
+        "Resource" : concat([var.kms_arn], local.resources)
       }
     ]
   })
